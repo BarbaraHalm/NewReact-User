@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, } from 'react';
+import { Container, Row, Col } from "react-bootstrap";
+import AddUserForm from './components/AddUserForm';
+import SeeAllUsers from './components/SeeAllUsers';
 function App() {
+  const [users, setUser] = useState([
+    { name: "Winifred ", email: " wini@gmail.com ", gen: " 21", id: "563823709" },
+    { name: " Jemimah", email: " jemimah@gmail.com ", gen: "20 ", id:"62tyug2y2t9" },
+    { name: " Julius", email: "juli@gmail.com ", gen: "21 ", id:"3627e8239001" },
+  ]);
+  const addNewUser=(owner)=>{
+    owner.id=Math.random().toString()
+    setUser([...users,owner])
+    console.log(owner)
+  };
+  const deleteUser =(id)=>{
+    setUser(users.filter((owner)=>{
+      if (owner.id!==id){
+        return owner;
+      }
+    }));
+  };
+  const UserEdit=(id, updatedInfo)=>{
+    setUser(
+      users.map((owner) =>{
+      if(owner.id===id){
+        return updatedInfo;
+      }
+        return owner;
+      })
+    );
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row style={{marginTop: "20px"}}>
+        <Col md={4} >
+          <h1>FORM</h1>
+          <AddUserForm brandNew={addNewUser}/>
+        </Col>
+        <Col md={8}>
+          <SeeAllUsers UserData={users}
+           deleteUser={deleteUser}
+           UserEdit={UserEdit}
+           />
+        </Col>
+      </Row>
+    </Container>
   );
-}
-
+};
 export default App;
