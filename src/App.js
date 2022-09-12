@@ -14,11 +14,14 @@ function App() {
     setUser([...users,owner])
     console.log(owner)
   };
-  const deleteUser =(id)=>{
+ 
+  const deleteUser =(id,deleteduser)=>{
     setUser(users.filter((owner)=>{
       if (owner.id!==id){
+      return deleteduser;
+    }
       return owner;
-    }}
+  }
       
     ));
   };
