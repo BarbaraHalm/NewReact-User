@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, } from 'react';
+import React, {useState} from 'react';
 import { Container, Row, Col } from "react-bootstrap";
 import AddUserForm from './components/AddUserForm';
 import SeeAllUsers from './components/SeeAllUsers';
@@ -17,9 +17,10 @@ function App() {
   const deleteUser =(id)=>{
     setUser(users.filter((owner)=>{
       if (owner.id!==id){
-        return owner;
-      }
-    }));
+      return owner;
+    }}
+      
+    ));
   };
   const UserEdit=(id, updatedInfo)=>{
     setUser(

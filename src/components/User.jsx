@@ -12,7 +12,7 @@ function User(props) {
     return (
            <>
            <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Changes Here</Modal.Title>
         </Modal.Header>
         <Modal.Body>
