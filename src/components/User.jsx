@@ -1,14 +1,22 @@
 import React,{useState} from 'react';
 import {Button, Card,Col,Modal} from "react-bootstrap";
 import EditUserForm from './EditUserForm';
+
+
 function User(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
+
   const handleDelete=(e) =>{
     e.preventDefault();
     props.deleteUser(props.UserData.id)
+       
   };
+
+
     return (
            <>
            <Modal show={show} onHide={handleClose}>
@@ -39,6 +47,12 @@ function User(props) {
       );
 }
 export default User;
+
+
+
+
+
+
 
 
 
