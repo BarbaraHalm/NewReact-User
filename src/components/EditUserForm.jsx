@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import {Form, Button} from  "react-bootstrap"
+import {Form, Button} from  "react-bootstrap";
+import {useDispatch} from 'react-redux';
+import {editUser} from '../Action/UserAction';
 
 
 
@@ -7,11 +9,13 @@ function EditUserForm(props) {
     const [name,setName]=useState(props.UserData.name)
     const [email,setEmail]=useState(props.UserData.email)
     const [gen,setGen]=useState(props.UserData.gen)
+    const dispatch =useDispatch()
     
 
     const handleEditSubmit=(e)=>{
         e.preventDefault();
-        props.UserEdit(props.UserData.id,{name,email,gen});
+        //props.UserEdit(props.UserData.id,{name,email,gen});
+        dispatch(editUser({id:props.UserData.id,name,email,gen}))
        
         
         props.hide()

@@ -11,26 +11,26 @@ function App() {
      console.log(owner)
    };
  
-   const deleteUser =(id,deleteduser)=>{
-     setUser(users.filter((owner)=>{
-       if (owner.id!==id){
-       return deleteduser;
-    }
-    return owner;
-   }
+  //  const deleteUser =(id,deleteduser)=>{
+  //    setUser(users.filter((owner)=>{
+  //      if (owner.id!==id){
+  //      return deleteduser;
+  //   }
+  //   return owner;
+  //  }
       
-    ));
-   };
-   const UserEdit=(id, updatedInfo)=>{
-    setUser(
-      users.map((owner) =>{
-      if(owner.id===id){
-        return updatedInfo;
-      }
-       return owner;
-      })
-     );
-   };
+  //   ));
+  //  };
+  //  const UserEdit=(id, updatedInfo)=>{
+  //   setUser(
+  //     users.map((owner) =>{
+  //     if(owner.id===id){
+  //       return updatedInfo;
+  //     }
+  //      return owner;
+  //     })
+  //    );
+  //  };
   return (
     <Container>
       <Row style={{marginTop: "20px"}}>
@@ -43,8 +43,8 @@ function App() {
         <Col md={8}>
           <SeeAllUsers 
           UserData={users}
-            deleteUser={deleteUser}
-           UserEdit={UserEdit}
+           // deleteUser={deleteUser}
+           //UserEdit={UserEdit}
            />
         </Col>
       </Row>
