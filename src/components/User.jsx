@@ -14,7 +14,7 @@ function User(props) {
 
   const handleDelete=(e) =>{
     e.preventDefault();
-    props.deleteUser(props.UserData.id)
+    //props.deleteUser(props.UserData.id)
        
   };
 
