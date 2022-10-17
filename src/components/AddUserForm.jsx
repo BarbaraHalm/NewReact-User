@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from "react-bootstrap"
-import {useDispatch,connect} from "react-redux";
+import {connect} from "react-redux";
 import {addUser} from "../Action/UserAction";
 import {v4 as uuid} from "uuid"
 import { doc, setDoc } from "firebase/firestore"; 
@@ -10,7 +10,7 @@ function AddUserForm (props) {
   const [name, setName] = useState(" ")
   const [email, setEmail] = useState("")
   const [gen, setGen] = useState("")
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
 
   const handleSubmit = async(e) => {
     e.preventDefault();
