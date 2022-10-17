@@ -1,15 +1,37 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React,{useState} from 'react';
+import React,{useEffect} from 'react';
 import { Container, Row, Col } from "react-bootstrap";
 import AddUserForm from './components/AddUserForm';
 import SeeAllUsers from './components/SeeAllUsers';
+import { collection, query,onSnapshot} from "firebase/firestore";
+import {db} from './Firebase/Config';
+import { addUser } from './Action/UserAction';
+import {useDispatch} from 'react-redux'
 function App() {
-   const [users, setUser] = useState([]);
-  const addNewUser=(owner)=>{
-   owner.id=Math.random().toString()
-    setUser([...users,owner])
-     console.log(owner)
-   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const readData=async ()=>{
+      const q = query(collection(db, "Users-Firebase"),);
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const users = [];
+       querySnapshot.forEach((doc) => {
+      users.push(doc.data());
+  });
+  dispatch(addUser(users));
+  console.log(users);
+});
+     }
+   
+readData();
+  },[])
+
+
+   //const [users, setUser] = useState([]);
+  // const addNewUser=(owner)=>{
+  //  owner.id=Math.random().toString()
+  //   setUser([...users,owner])
+  //    console.log(owner)
+  //  };
  
   //  const deleteUser =(id,deleteduser)=>{
   //    setUser(users.filter((owner)=>{
@@ -37,12 +59,12 @@ function App() {
         <Col md={4} >
           <h1>FORM</h1>
           <AddUserForm
-           brandNew={addNewUser}
+          // brandNew={addNewUser}
            />
         </Col>
         <Col md={8}>
           <SeeAllUsers 
-          UserData={users}
+         // UserData={users}
            // deleteUser={deleteUser}
            //UserEdit={UserEdit}
            />
