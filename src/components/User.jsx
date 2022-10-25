@@ -3,6 +3,8 @@ import {Button, Card,Col,Modal} from "react-bootstrap";
 import EditUserForm from './EditUserForm';
 import {connect} from 'react-redux';
 import {deleteUser} from '../Action/UserAction'
+import { doc, deleteDoc } from "firebase/firestore";
+import {db} from '../Firebase/Config';
 
 
 function User(props) {
@@ -12,9 +14,12 @@ function User(props) {
   
 
 
-  const handleDelete=(e) =>{
+  const handleDelete= async(e) =>{
     e.preventDefault();
     //props.deleteUser(props.UserData.id)
+    try{
+      await deleteDoc(doc(db, "Users-timestamp", props.UserData.id));
+    }catch(e){console.log(e)}
        
   };
 

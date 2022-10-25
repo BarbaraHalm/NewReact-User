@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap"
 import {connect} from "react-redux";
 import {addUser} from "../Action/UserAction";
 import {v4 as uuid} from "uuid"
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, serverTimestamp, setDoc } from "firebase/firestore"; 
 import {db} from '../Firebase/Config';
 
 function AddUserForm (props) {
@@ -17,9 +17,9 @@ function AddUserForm (props) {
    // dispatch(addUser({id:uuid(),name, email, gen}))
     //props.brandNew({ name, email, gen })
 
-  let newUser = {id:uuid(),name, email, gen};
+  let newUser = {id:uuid(),name, email, gen, timestamp: serverTimestamp()};
     console.log ({id:uuid(), name, email, gen});
-    try{await setDoc(doc(db, "Users-Firebase", newUser.id), newUser );
+    try{await setDoc(doc(db, "Users-timestamp", newUser.id), newUser );
     } 
     catch(e){
     console.log(e)
